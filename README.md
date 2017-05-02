@@ -1,6 +1,10 @@
 # vue_ant
 
 > A Vue.js project
+- vue2.0
+- vuex
+- vux
+- vue-router
 
 ## Build Setup
 
@@ -8,7 +12,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8081
 npm run dev
 
 # build for production with minification

@@ -1,14 +1,14 @@
 <template>
   <div class="donut">
-    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" class="donut__svg">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="donut__svg">
       <!--<circle id="donut-graph-x" class="donut__svg__scrim" r="40" cy="50" cx="50" stroke-width="3" stroke="url(#baseLine)"
               fill="none" transform="rotate(-90 50 50)"/>-->
       <circle id="donut-graph" v-bind:style="styleObject" :r="radius" :cy="cy" :cx="cx" stroke-width="5" stroke="url(#purple)"
               stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0.7" fill="none"  transform="rotate(-90 50 50)"/>
 
-      <path id="lessNormal" stroke="#FFD600" stroke-width="1.5" stroke-opacity="0.5" :d="offset.less"></path>
-      <path id="normal" stroke="#63869E" stroke-width="1.5" stroke-opacity="0.5" :d="offset.normal"></path>
-      <path id="moreNormal" stroke="#C23531" stroke-width="1.5" stroke-opacity="0.5" :d="offset.more"></path>
+      <path id="lessNormal" stroke="#FFD600" stroke-width="1.2" stroke-opacity="0.5" :d="offset.less"></path>
+      <path id="normal" stroke="#04BE02" stroke-width="1.2" stroke-opacity="0.5" :d="offset.normal"></path>
+      <path id="moreNormal" stroke="#C23531" stroke-width="1.2" stroke-opacity="0.5" :d="offset.more"></path>
       <defs>
         <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="#7a5bcf"/>
@@ -27,7 +27,7 @@
       </defs>
 
     </svg>
-    <div class="donut__copy">
+    <div class="donut_content">
       <span>
         {{label}}
       </span><br>
@@ -45,7 +45,7 @@
       return {
         cx: 50,
         cy: 50,
-        radius: 40,
+        radius: 46,
         offset: {
           less: '',
           normal: '',
@@ -146,18 +146,18 @@
 <style lang="less">
   .donut {
     position: relative;
-    width: 100px;
-    height: 100px;
-  }
-
-  .donut__copy {
-    text-align: center;
     width: 100%;
     height: 100%;
-    padding-top: 27px;
-    top: 0;
-    left: 0;
+  }
+
+  .donut_content {
+    width: 100%;
+    text-align: center;
     position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
 
   .donut__spic {
