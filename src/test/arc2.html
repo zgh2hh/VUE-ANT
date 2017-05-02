@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+  body {
+    background-color : #333;
+  }
+
+  svg {
+    width  : 500px;
+    height : 500px;
+    border : 1px dashed lightblue; //DEBUG
+  }
+
+  path {
+    stroke-width : 5;
+    stroke       : lime;
+    fill         : #151515;
+  }
+</style>
+<svg>
+  <path id="theSvgArc"/>
+  <path id="theSvgArc2"/>
+</svg>
+</body>
+<script>
+  function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+    var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+
+    return {
+      x: centerX + (radius * Math.cos(angleInRadians)),
+      y: centerY + (radius * Math.sin(angleInRadians))
+    };
+  }
+
+  function describeArc(x, y, radius, startAngle, endAngle) {
+    var start = polarToCartesian(x, y, radius, endAngle);
+    var end = polarToCartesian(x, y, radius, startAngle);
+
+    var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+
+    return [
+      "M", start.x, start.y,
+      "A", radius, radius, 0, arcSweep, 0, end.x, end.y,
+      "L", x, y,
+      "L", start.x, start.y
+    ].join(" ");
+  }
+
+  document.getElementById("theSvgArc").setAttribute("d", describeArc(150, 150, 100, 0, 180));
+  document.getElementById("theSvgArc2").setAttribute("d", describeArc(300, 150, 100, 45, 190));
+</script>
+</html>
