@@ -1,13 +1,14 @@
 export default {
   path: '/fields',
   component: r => require.ensure([], () => r(require('./pages/layout')), '/fields'),
+  redirect: '/fields/',
   children: [
     {
       path: '/',
-      component: r => require.ensure([], () => r(require('./pages/fieldList')), '/fields')
+      component: r => require.ensure([], () => r(require('./pages/fieldList')), '/fields/list')
     },{
-      path: '/fields/:id',
-      component: r => require.ensure([], () => r(require('./pages/fieldInfo')), '/fields')
+      path: ':id',
+      component: r => require.ensure([], () => r(require('./pages/fieldInfo')), '/fields/info')
     }
   ]
 }

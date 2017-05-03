@@ -160,17 +160,6 @@
     transform: translateY(-50%);
   }
 
-  .donut__spic {
-    position: absolute;
-    top: 9px;
-    font-size: 30px;
-    line-height: 1em;
-    content: "%";
-    animation: donutTitleFadeRight 800ms 200ms cubic-bezier(.99, .01, .22, .94) forwards;
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
   @keyframes donutTitleFadeLeft {
     from {
       opacity: 0;

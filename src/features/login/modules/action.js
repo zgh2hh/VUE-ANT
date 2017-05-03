@@ -15,14 +15,15 @@ export const login = ({commit}, params) => {
       }
     })
       .then((res) => {
-        if(res.data.code === 20000){
+        let result = res.data;
+        if(result.code === 20000){
           commit(types.LOGIN, {
             username: params.account,
-            userid: res.data.data.user_id
+            userid: result.data.user_id
           });
         }
         Vue.$vux.loading.hide();
-        resolve(res.data);
+        resolve(result);
       })
       .catch((res) => {
         Vue.$vux.loading.hide();

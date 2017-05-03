@@ -1,6 +1,6 @@
 /** 当前登录账号 */
-export const currentUserName = (state) => state.current.username
-export const currentUserId = (state) => state.current.userid
+export const currentUserName = (state) => state.user.username
+export const currentUserId = (state) => state.user.userid
 /** 注册 */
 export const registerPhone = (state) => state.register.phone
 /** 手机号重置 */

@@ -7,7 +7,7 @@ import './index.less'
 import modules from '../modules/store'
 import store from '@/store'
 
-store.registerModule('fields', {
+store.registerModule('sensors', {
   ...modules
 })
 </script>

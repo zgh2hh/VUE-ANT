@@ -3,9 +3,10 @@ import * as actions from './action'
 import * as getters from './getter'
 
 const state = {
-  current: {
+  user: {
     username: '',
-    userid: ''
+    userid: '',
+    token: localStorage.getItem('token')
   },
   register: {
     phone: '',
@@ -27,8 +28,12 @@ const state = {
 
 const mutations = {
   [types.LOGIN] (state, data) {
-    state.current.username = data.username;
-    state.current.userid = data.userid;
+    state.user.username = data.username;
+    state.user.userid = data.userid;
+  },
+  [types.USER_TOKEN] (state, data) {
+    state.user.token = data
+    localStorage.setItem('token', data)
   },
   [types.CHECK_CODE] (state, data) {
     if(data.op == 1){

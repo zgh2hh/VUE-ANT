@@ -6,3 +6,5 @@ export const CHECK_CODE = 'CHECK_CODE'
 export const REGISTER = 'REGISTER'
 /** 重置密码 **/
 export const RESET = 'RESET'
+/** 获取用户token **/
+export const USER_TOKEN = 'USER_TOKEN'

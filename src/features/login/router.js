@@ -1,10 +1,11 @@
 export default {
   path: '/login',
   component: r => require.ensure([], () => r(require('./pages/layout')), '/login'),
+  redirect: '/login/',
   children: [
     {
       path: '/',
-      component: r => require.ensure([], () => r(require('./pages/login')), '/login/')
+      component: r => require.ensure([], () => r(require('./pages/login')), '/login')
     },{
       path: '/validatePhone/:op',
       component: r => require.ensure([], () => r(require('./pages/validatePhone')), '/register')

@@ -5,7 +5,7 @@ const state = {
 
 const actions = {
   setSession:({ commit },data) => {
-    commit('SESSION',data.amount)
+    commit('SESSION', data.amount)
   },
   clearSession:({ commit }) => {
     commit('CLEARSESSION')
