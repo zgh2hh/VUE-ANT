@@ -1,7 +1,6 @@
 import App from './App'
 import Vue from 'vue'
 import Router from 'vue-router'
-import {sync} from 'vuex-router-sync'
 import store from './store'
 import index from './router/index/router'
 //路由开始
@@ -29,18 +28,15 @@ let router = new Router({
 // }
 
 //是否有OPENID若没有则跳到授权
-router.beforeEach((to, from, next) => {
-  if (store.state.common.session) {
-    next();
-  } else {
-    store.dispatch({
-      type: 'clearSession'
-    })
-    window.location.href = "https://www.baidu.com"
-  }
-})
-
-// 同步store和路由
-sync(store, router)
+// router.beforeEach((to, from, next) => {
+//   if (store.state.common.session) {
+//     next();
+//   } else {
+//     store.dispatch({
+//       type: 'clearSession'
+//     })
+//     window.location.href = "https://www.baidu.com"
+//   }
+// })
 
 export default router
