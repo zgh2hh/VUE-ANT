@@ -9,13 +9,18 @@
       <swiper v-model="index" height="300px" :show-dots="false">
         <swiper-item key="0">
           <div class="tab-swiper vux-center">
-            水质 Container
             <!--<ul>
               <li v-for="(wh, i) in weather" :key="i">
                 {{wh.title}} {{wh.translate_value}}
               </li>
             </ul>-->
-            <progressBar></progressBar>
+            <div v-for="(w, i) in water" :key="i" class="water">
+              <div>
+                <span>{{w.peng_name}}</span><br>
+                <span>{{w.field_name}}</span>
+              </div>
+              <progressBar :value="w.sensor_value | convert" :upperLimit="w.max_value"></progressBar>
+            </div>
           </div>
         </swiper-item>
         <swiper-item key="1">
