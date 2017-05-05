@@ -9,7 +9,7 @@
           <span>{{fieldInfo.userName}}</span>
         </div>
         <group>
-          <cell title="传感器" is-link :link="{path:'/fields/1/chart'}" inline-desc=':link={path:"/fields/1/chart"}'></cell>
+          <cell title="传感器" is-link :link="{path:'/sensors'}" ></cell>
         </group>
         <div class="weather">
           <p>气象</p>
@@ -30,7 +30,7 @@
               <span>{{water.title}}</span><br>
               <span>{{water.value}}</span>
             </x-circle>-->
-            <Chart :label="water.title"
+            <Gauge :label="water.title"
                    :value="water.value | convert"
                    :min="water.min_value | convert"
                    :max="water.max_value | convert"
@@ -39,7 +39,7 @@
                    :peng-name="water.title"
                    field-name="一号水质监测点">
 
-            </Chart>
+            </Gauge>
           </FlexboxItem>
         </Flexbox>
       </div>
@@ -73,12 +73,12 @@
 
 <script>
   import { XHeader, Flexbox, FlexboxItem, Group, Cell, XCircle } from 'vux'
-  import Chart from '../../../components/chart.vue'
+  import Gauge from '../../../components/gauge.vue'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
     components: {
-      XHeader, Flexbox, FlexboxItem, Group, Cell, XCircle, Chart
+      XHeader, Flexbox, FlexboxItem, Group, Cell, XCircle, Gauge
     },
     data () {
       return {

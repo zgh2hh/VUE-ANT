@@ -3,12 +3,12 @@ import axios from '@/config/http'
 import * as types from './mutationTypes'
 import {commonToast} from '../../common/toast'
 
-/** 获取所有田块列表 **/
-export const getAllFields = ({commit}, params) => {
+/** 获取所有监测值子类 **/
+export const getSubTypes = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'api/field/list',
+      url: 'api/sensor/subtype',
       params: {
         ...params
       }
@@ -16,10 +16,8 @@ export const getAllFields = ({commit}, params) => {
       commonToast(res);
       let result = res.data;
       if(result){
-        commit(types.GET_FIELDS, {
-          area: result.data.total_area,
-          count: result.data.total_field,
-          list: result.data.field_list
+        commit(types.GET_SUBTYPES, {
+          subTypes: result.data
         });
       }
       resolve(result);
@@ -29,26 +27,20 @@ export const getAllFields = ({commit}, params) => {
   })
 }
 
-/** 获取田块信息 **/
-export const getFieldInfo = ({commit}, params) => {
+/** 获取所有监测点 **/
+export const getPengList = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'api/field/info',
+      url: 'api/sensor/penglist',
       params: {
         ...params
       }
     }).then((res) => {
       let result = res.data;
-      console.log(result);
       if(result){
-        commit(types.GET_FIELD_INFO, {
-          pic: result.data.thumbnail_url,
-          fieldName: result.data.field_name,
-          area: result.data.area_size,
-          userName: result.data.user_name,
-          weatherMonitor: result.data.weather_monitor_name,
-          waterMonitor: result.data.water_monitor_name
+        commit(types.GET_PENG_LIST, {
+          pengList: result.data
         });
       }
       resolve(result);
@@ -58,21 +50,21 @@ export const getFieldInfo = ({commit}, params) => {
   })
 }
 
-/**  获取农事活动 **/
-export const getFieldActivities = ({commit}, params) => {
+/** 获取所有水质信息 **/
+export const getWaterInfo = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'api/field/activity',
+      url: 'api/sensor/water',
       params: {
         ...params
       }
     }).then((res) => {
       let result = res.data;
       if(result){
-        commit(types.GET_FIELD_ACTIVITIES, {
-          activities: result.data
-        })
+        commit(types.GET_WATER_INFO, {
+          water: result.data
+        });
       }
       resolve(result);
     }).catch((res) => {
@@ -81,22 +73,21 @@ export const getFieldActivities = ({commit}, params) => {
   })
 }
 
-/** 获取传感器数据 **/
-export const getMonitorData = ({commit}, params) => {
+/** 获取所有气象信息 **/
+export const getWeatherInfo = ({commit}, params) => {
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
-      url: 'api/field/monitor',
+      url: 'api/sensor/weather',
       params: {
         ...params
       }
     }).then((res) => {
       let result = res.data;
       if(result){
-        commit(types.GET_MONITOR_DATA, {
-          waterMonitor: result.data.water_monitor,
-          weatherMonitor: result.data.weather_monitor
-        })
+        commit(types.GET_WEATHER_INFO, {
+          weather: result.data
+        });
       }
       resolve(result);
     }).catch((res) => {

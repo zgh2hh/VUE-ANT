@@ -1,8 +1,8 @@
-/** 获取所有田块 **/
-export const GET_FIELDS = 'GET_FIELDS'
-/** 获取单个田块信息 **/
-export const GET_FIELD_INFO = 'GET_FIELD_INFO'
-/** 获取农事活动 **/
-export const GET_FIELD_ACTIVITIES = 'GET_FIELD_ACTIVITIES'
-/** 获取传感器数据 **/
-export const GET_MONITOR_DATA = 'GET_MONITOR_DATA'
+/** 获取所有统计项子类 **/
+export const GET_SUBTYPES = 'GET_SUBTYPES'
+/** 获取所有监测点 **/
+export const GET_PENG_LIST = 'GET_PENG_LIST'
+/** 获取水质信息 **/
+export const GET_WATER_INFO = 'GET_WATER_INFO'
+/** 获取气象信息 **/
+export const GET_WEATHER_INFO = 'GET_WEATHER_INFO'
