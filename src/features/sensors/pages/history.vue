@@ -2,7 +2,7 @@
   <div id="history">
     <x-header :left-options='{"showBack": true, "backText": "历史数据"}' class="header"></x-header>
     <group>
-      <selector title="监测点" placeholder="请选择监测点" v-model="peng" :options="getPengs()"></selector>
+      <selector title="监测点" placeholder="请选择监测点" v-model="pengNo"  :options="getPengs()"></selector>
       <selector title="类别" placeholder="请选择类别" v-model="type" :options="getTypes()"></selector>
     </group>
   </div>
@@ -18,7 +18,7 @@
     },
     data: function () {
       return {
-        peng: '',
+        pengNo: 21,
         type: '',
         list1: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}],
       }
@@ -56,16 +56,29 @@
       if(!this.pengList || this.pengList.length == 0){
         this.getPengList();
       }
-      /*this.getHistoryData({
-        peng_type: 'PH',
-        peng_no: 21,
-        crop_id: ''
-      });*/
+    },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+        // 通过 `vm` 访问组件实例
+        vm.pengNo = parseInt(to.params.peng_no);
+        vm.type = to.params.type;
+      });
     },
     watch: {
-      history: function(){
-
-      }
+      /*pengNo: function (val, oldVal) {
+        this.getHistoryData({
+         peng_type: this.type,
+         peng_no: val,
+         crop_id: ''
+         });
+      },
+      type: function (val, oldVal) {
+        this.getHistoryData({
+          peng_type: val,
+          peng_no: this.pengNo,
+          crop_id: ''
+        });
+      },*/
     }
   }
 </script>

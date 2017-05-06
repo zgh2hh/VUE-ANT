@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "echarts": "^3.5.3",
     "es6-promise": "^4.1.0",
     "fastclick": "^1.0.6",
     "jssha": "^2.2.0",
