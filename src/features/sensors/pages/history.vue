@@ -18,7 +18,7 @@
     },
     data: function () {
       return {
-        pengNo: 21,
+        pengNo: '',
         type: '',
         list1: [{key: 'gd', value: '广东'}, {key: 'gx', value: '广西'}],
       }
@@ -42,7 +42,7 @@
         var rs = [];
         for(var i = 0; i < this.pengList.length; i++){
           rs.push({
-            key: this.pengList[i].peng_no,
+            key: this.pengList[i].peng_no + '',
             value: this.pengList[i].peng_name
           });
         }
@@ -60,7 +60,7 @@
     beforeRouteEnter (to, from, next) {
       next(vm => {
         // 通过 `vm` 访问组件实例
-        vm.pengNo = parseInt(to.params.peng_no);
+        vm.pengNo = to.params.peng_no;
         vm.type = to.params.type;
       });
     },
