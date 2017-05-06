@@ -5,7 +5,7 @@
             rx="1" ry="1"
             style="fill: #E6E6E6"/>
       <path :d="d"
-            style="stroke:#660000; stroke-width: 10; fill:#660000;"/>
+            style="stroke:#11A166; stroke-width: 10; fill:#11A166; "/>
       <text x="101" y="9" font-size="6">{{`${value} (${percent})`}}</text>
     </svg>
   </div>

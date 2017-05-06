@@ -8,12 +8,7 @@
       </tab>
       <swiper v-model="index" height="300px" :show-dots="false">
         <swiper-item key="0">
-          <div class="tab-swiper vux-center">
-            <!--<ul>
-              <li v-for="(wh, i) in weather" :key="i">
-                {{wh.title}} {{wh.translate_value}}
-              </li>
-            </ul>-->
+          <div class="tab-swiper vux-center water-info">
             <div v-for="(w, i) in water" :key="i" class="water">
               <div>
                 <span>{{w.peng_name}}</span><br>
@@ -21,11 +16,28 @@
               </div>
               <progressBar :value="w.sensor_value | convert" :upperLimit="w.max_value"></progressBar>
             </div>
+            <flexbox>
+              <flexbox-item v-for="(type, i) in subTypes" :key="type.peng_type">
+                <a href="javascript:void(0)"
+                   @click.stop.prevent="_selectType(type)"
+                   :style="_addClass(type.peng_type)"
+                >
+                  {{type.sensor_name}}
+                </a>
+              </flexbox-item>
+            </flexbox>
           </div>
         </swiper-item>
         <swiper-item key="1">
-          <div class="tab-swiper vux-center">
-            天气 Container
+          <div class="tab-swiper vux-center weather-info">
+            <flexbox wrap="wrap" :gutter="0" justify="center">
+              <flexbox-item :span="1/3" v-for='(we, i) in weather' :key="we.peng_type">
+                <x-circle :percent="we.value | convert" :stroke-width="5" stroke-color="#04BE02">
+                  <span>{{we.title}}</span><br>
+                  <span>{{we.value}}</span>
+                </x-circle>
+              </flexbox-item>
+            </flexbox>
           </div>
         </swiper-item>
       </swiper>
@@ -34,17 +46,22 @@
 </template>
 
 <script>
-  import { XHeader, Flexbox, FlexboxItem, Group, Tab, TabItem, Swiper, SwiperItem } from 'vux'
+  import { XHeader, Flexbox, FlexboxItem, Group, Tab, TabItem, Swiper, SwiperItem, XButton, XCircle } from 'vux'
   import { mapActions, mapGetters } from 'vuex'
   import progressBar from '../../../components/progressBar'
 
   export default {
     components: {
-      XHeader, Flexbox, FlexboxItem, Group, Tab, TabItem, Swiper, SwiperItem, progressBar
+      XHeader, Flexbox, FlexboxItem, Group, Tab, TabItem, Swiper, SwiperItem, progressBar, XButton, XCircle
     },
     data () {
       return {
-        index: 0
+        index: 0,
+        selectedType: 'PH',
+        styleObject: {
+          'background': '#11A166',
+          'color': '#E4E4E4'
+        }
       }
     },
     computed:{
@@ -52,8 +69,19 @@
     },
     methods: {
       ...mapActions(['getSubTypes', 'getPengList', 'getWaterInfo', 'getWeatherInfo']),
-      onItemClick (index) {
-        console.log('on item click:', index)
+      _selectType: function(type){
+        console.log(type);
+        this.selectedType = type.peng_type;
+        this.getWaterInfo({
+          peng_type: this.selectedType
+        });
+      },
+      _addClass: function(peng_type){
+        if(this.selectedType == peng_type){
+          return this.styleObject
+        }else{
+          return ''
+        }
       }
     },
     created: function () {
