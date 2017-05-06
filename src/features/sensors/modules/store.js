@@ -6,7 +6,8 @@ const state = {
   subTypes: [],
   pengList: [],
   water: [],
-  weather: []
+  weather: [],
+  history: []
 };
 
 const mutations = {
@@ -21,6 +22,9 @@ const mutations = {
   },
   [types.GET_WEATHER_INFO] (state, data) {
     state.weather = data.weather;
+  },
+  [types.GET_HISTORY_DATA] (state, data) {
+    state.history = data.history;
   }
 };
 

@@ -5,6 +5,9 @@ export default {
     {
       path: '/',
       component: r => require.ensure([], () => r(require('./pages/sensors')), '/sensors')
+    },{
+      path: 'history/:type/:peng_no',
+      component: r => require.ensure([], () => r(require('./pages/history')), '/sensors')
     }
   ]
 }

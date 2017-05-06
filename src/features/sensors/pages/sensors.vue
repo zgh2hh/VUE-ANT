@@ -1,6 +1,6 @@
 <template>
   <div id="sensors">
-    <x-header :left-options='{"showBack": true}' class="header">传感器</x-header>
+    <x-header :left-options='{"showBack": true, "backText": "传感器"}' class="header"></x-header>
     <div class="container">
       <tab :line-width='2' active-color='#4BB7AA' v-model="index">
         <tab-item class="vux-center" key="0">水质</tab-item>
@@ -9,7 +9,7 @@
       <swiper v-model="index" height="300px" :show-dots="false">
         <swiper-item key="0">
           <div class="tab-swiper vux-center water-info">
-            <div v-for="(w, i) in water" :key="i" class="water">
+            <div v-for="(w, i) in water" :key="i" class="water" v-on:click.stop.prevent="_toHistory(w.peng_no, w.peng_type)">
               <div>
                 <span>{{w.peng_name}}</span><br>
                 <span>{{w.field_name}}</span>
@@ -82,6 +82,9 @@
         }else{
           return ''
         }
+      },
+      _toHistory: function(type, peng_no){
+        this.$router.push(`/sensors/history/${type}/${peng_no}`);
       }
     },
     created: function () {

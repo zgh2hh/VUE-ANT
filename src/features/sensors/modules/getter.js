@@ -7,4 +7,6 @@ export const pengList = (state) => state.pengList
 export const water = (state) => state.water
 /** 获取气息那个信息 **/
 export const weather = (state) => state.weather
+/** 获取历史信息 **/
+export const history = (state) => state.history
 

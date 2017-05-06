@@ -95,3 +95,26 @@ export const getWeatherInfo = ({commit}, params) => {
     })
   })
 }
+
+/** 获取所有历史数据 **/
+export const getHistoryData = ({commit}, params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: 'api/sensor/history',
+      params: {
+        ...params
+      }
+    }).then((res) => {
+      let result = res.data;
+      if(result){
+        commit(types.GET_HISTORY_DATA, {
+          history: result.data
+        });
+      }
+      resolve(result);
+    }).catch((res) => {
+      reject(res);
+    })
+  })
+}
