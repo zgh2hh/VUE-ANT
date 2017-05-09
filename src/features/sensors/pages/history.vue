@@ -47,15 +47,23 @@
           });
         }
         return rs;
+      },
+      initData: async function(){
+        let results = await Promise.all(
+          [this.getSubTypes(),
+            this.getPengList()
+          ]);
+        console.log(results);
       }
     },
     created: function () {
-      if(!this.subTypes || this.subTypes.length == 0){
+      /*if(!this.subTypes || this.subTypes.length == 0){
         this.getSubTypes();
       }
       if(!this.pengList || this.pengList.length == 0){
         this.getPengList();
-      }
+      }*/
+      this.initData();
     },
     beforeRouteEnter (to, from, next) {
       next(vm => {

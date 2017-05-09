@@ -59,7 +59,7 @@
 
         this.login(params).then((result) => {
           if(result.code === 20000){
-            this.$router.push('fields')
+            this.$router.push('/fields')
           }
         });
       }

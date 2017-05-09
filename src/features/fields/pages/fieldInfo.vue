@@ -2,26 +2,26 @@
   <div id="fieldInfo">
     <x-header :left-options='{"showBack": true}' class="header">田块信息</x-header>
     <div class="container">
-        <img :src="fieldInfo.pic" style="width:100%;display:block;" height="150">
-        <div class="content">
-          <span>{{fieldInfo.fieldName}}</span>
-          <span>{{`${fieldInfo.area}亩`}}</span>
-          <span>{{fieldInfo.userName}}</span>
-        </div>
-        <group>
-          <cell title="传感器" is-link :link="{path:'/sensors'}" ></cell>
-        </group>
-        <div class="weather">
-          <p>气象</p>
-          <Flexbox wrap="wrap" :gutter="0" justify="center">
-            <FlexboxItem :span="1/3" v-for='(weather, i) in monitor.weather' :key="weather.peng_type">
-              <x-circle :percent="weather.value | convert" :stroke-width="5" stroke-color="#04BE02">
-                <span>{{weather.title}}</span><br>
-                <span>{{weather.value}}</span>
-              </x-circle>
-            </FlexboxItem>
-          </Flexbox>
-        </div>
+      <img :src="fieldInfo.pic" style="width:100%;display:block;" height="150">
+      <div class="content">
+        <span>{{fieldInfo.fieldName}}</span>
+        <span>{{`${fieldInfo.area}亩`}}</span>
+        <span>{{fieldInfo.userName}}</span>
+      </div>
+      <group>
+        <cell title="传感器" is-link :link="{path:'/sensors'}"></cell>
+      </group>
+      <div class="weather">
+        <p>气象</p>
+        <Flexbox wrap="wrap" :gutter="0" justify="center">
+          <FlexboxItem :span="1/3" v-for='(weather, i) in monitor.weather' :key="weather.peng_type">
+            <x-circle :percent="weather.value | convert" :stroke-width="5" stroke-color="#04BE02">
+              <span>{{weather.title}}</span><br>
+              <span>{{weather.value}}</span>
+            </x-circle>
+          </FlexboxItem>
+        </Flexbox>
+      </div>
       <div class="water">
         <p>水质</p>
         <Flexbox wrap="wrap" :gutter="0" justify="center">
@@ -72,9 +72,9 @@
 </template>
 
 <script>
-  import { XHeader, Flexbox, FlexboxItem, Group, Cell, XCircle } from 'vux'
+  import {XHeader, Flexbox, FlexboxItem, Group, Cell, XCircle} from 'vux'
   import Gauge from '../../../components/gauge.vue'
-  import { mapActions, mapGetters } from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     components: {
@@ -86,28 +86,37 @@
       }
     },
     methods: {
-      ...mapActions(['getFieldInfo', 'getMonitorData', 'getFieldActivities'])
-  },
-    computed:{
-    ...mapGetters(['fieldInfo', 'fieldActivities', 'monitor', 'Params'])
-  },
-   created: function () {
-    this.getFieldInfo({
-      field_id: this.Params.id
-    });
-
-    this.getFieldActivities({
-      field_id: this.Params.id,
-      page:1,
-      limit:10
-    });
-
-    this.getMonitorData({
-      field_id: this.Params.id
-    });
-  },
+      ...mapActions(['getFieldInfo', 'getMonitorData', 'getFieldActivities']),
+    initData: async function(){
+      let results = await Promise.all(
+        [
+          this.getFieldInfo({
+            field_id: this.Params.id
+          }),
+          this.getFieldActivities({
+            field_id: this.Params.id,
+            page: 1,
+            limit: 10
+          }),
+          this.getMonitorData({
+            field_id: this.Params.id
+          })
+        ]);
+      console.log(results);
+    }
+  }
+  ,
+  computed:{
+  ...
+    mapGetters(['fieldInfo', 'fieldActivities', 'monitor', 'Params'])
+  }
+  ,
+  created: function () {
+    this.initData();
+  }
+  ,
   filters: {
-    convert: function(obj) {
+    convert: function (obj) {
       return parseFloat(obj);
     }
   }

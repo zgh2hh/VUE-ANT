@@ -85,15 +85,19 @@
       },
       _toHistory: function(type, peng_no){
         this.$router.push(`/sensors/history/${type}/${peng_no}`);
+      },
+      initData: async function(){
+        let results = await Promise.all(
+          [this.getSubTypes(),
+            this.getPengList(),
+            this.getWaterInfo({peng_type: 'PH'}),
+            this.getWeatherInfo()
+          ]);
+        console.log(results);
       }
     },
     created: function () {
-      this.getSubTypes()
-      this.getPengList()
-      this.getWaterInfo({
-        peng_type: 'PH'
-      })
-      this.getWeatherInfo()
+      this.initData()
     },
     filters: {
       convert: function(obj) {
