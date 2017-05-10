@@ -1,3 +1,8 @@
+import {state as outerState,
+  mutations as outerMutations,
+  actions as outerActions,
+  getters as outerGetters} from './modules/store';
+
 const state = {
   session:(process.env.NODE_ENV == 'development' ? 'oAnmJxNOk4geid2KrRdZA3ZsUUWc' : ''),
   system:(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) ? 'IOS' : 'Android')
@@ -38,8 +43,8 @@ const mutations = {
 }
 
 export default {
-  state,
-  mutations,
-  actions,
-  getters
+  state: {...state, ...outerState},
+  mutations: {...mutations, ...outerMutations},
+  actions: {...actions, ...outerActions},
+  getters: {...getters, ...outerGetters}
 }

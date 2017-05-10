@@ -19,7 +19,6 @@ const state = {
       weatherMonitor: '',
       waterMonitor: ''
     },
-    activities: [],
     monitor: {
       water: [],
       weather: []
@@ -40,9 +39,6 @@ const mutations = {
     state.detail.info.userName = data.userName;
     state.detail.info.weatherMonitor = data.weatherMonitor;
     state.detail.info.waterMonitor = data.waterMonitor;
-  },
-  [types.GET_FIELD_ACTIVITIES] (state, data){
-    state.detail.activities = data.activities;
   },
   [types.GET_MONITOR_DATA] (state, data){
     state.detail.monitor.water = data.waterMonitor;

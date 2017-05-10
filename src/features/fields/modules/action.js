@@ -58,29 +58,6 @@ export const getFieldInfo = ({commit}, params) => {
   })
 }
 
-/**  获取农事活动 **/
-export const getFieldActivities = ({commit}, params) => {
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'get',
-      url: 'api/field/activity',
-      params: {
-        ...params
-      }
-    }).then((res) => {
-      let result = res.data;
-      if(result){
-        commit(types.GET_FIELD_ACTIVITIES, {
-          activities: result.data
-        })
-      }
-      resolve(result);
-    }).catch((res) => {
-      reject(res);
-    })
-  })
-}
-
 /** 获取传感器数据 **/
 export const getMonitorData = ({commit}, params) => {
   return new Promise((resolve, reject) => {
