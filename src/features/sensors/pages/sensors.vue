@@ -69,12 +69,20 @@
     },
     methods: {
       ...mapActions(['getSubTypes', 'getPengList', 'getWaterInfo', 'getWeatherInfo']),
-      _selectType: function(type){
-        console.log(type);
+      _selectType: async function(type){
         this.selectedType = type.peng_type;
-        this.getWaterInfo({
-          peng_type: this.selectedType
+        this.$vux.loading.show({
+          text: '请稍候'
         });
+        try {
+          let rs = await this.getWaterInfo({
+            peng_type: this.selectedType
+          });
+        }catch (ex){
+          console.log(ex);
+        }finally {
+          this.$vux.loading.hide()
+        }
       },
       _addClass: function(peng_type){
         if(this.selectedType == peng_type){
@@ -87,13 +95,30 @@
         this.$router.push(`/sensors/history/${type}/${peng_no}`);
       },
       initData: async function(){
-        let results = await Promise.all(
-          [this.getSubTypes(),
-            this.getPengList(),
-            this.getWaterInfo({peng_type: 'PH'}),
-            this.getWeatherInfo()
+        this.$vux.loading.show({
+          text: '请稍候'
+        });
+        let promises = [];
+        if (!this.subTypes || this.subTypes.length == 0) {
+          promises.push(this.getSubTypes());
+        }
+        if (!this.pengList || this.pengList.length == 0) {
+          promises.push(this.getPengList());
+        }
+        try {
+          let results = await Promise.all(
+              [...promises,
+              this.getWaterInfo({peng_type: 'PH'}),
+              this.getWeatherInfo()
           ]);
-        console.log(results);
+          console.log(results);
+        }catch (ex){
+          console.log(ex)
+        }finally {
+          this.$vux.loading.hide();
+        }
+
+
       }
     },
     created: function () {

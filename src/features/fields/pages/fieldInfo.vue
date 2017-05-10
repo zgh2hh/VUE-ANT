@@ -88,21 +88,29 @@
     methods: {
       ...mapActions(['getFieldInfo', 'getMonitorData', 'getFieldActivities']),
     initData: async function(){
-      let results = await Promise.all(
-        [
-          this.getFieldInfo({
-            field_id: this.Params.id
-          }),
-          this.getFieldActivities({
-            field_id: this.Params.id,
-            page: 1,
-            limit: 10
-          }),
-          this.getMonitorData({
-            field_id: this.Params.id
-          })
-        ]);
-      console.log(results);
+      this.$vux.loading.show({
+        text: '请稍候'
+      });
+      try {
+        let results = await Promise.all([
+            this.getFieldInfo({
+              field_id: this.Params.id
+            }),
+            this.getFieldActivities({
+              field_id: this.Params.id,
+              page: 1,
+              limit: 10
+            }),
+            this.getMonitorData({
+              field_id: this.Params.id
+            })
+          ]);
+        console.log(results);
+      }catch (ex){
+        console.log(ex)
+      }finally {
+        this.$vux.loading.hide();
+      }
     }
   }
   ,

@@ -62,7 +62,13 @@
     ...mapGetters(['fieldList','Params'])
     },
     created: function () {
-      this.getFields();
+      let that = this;
+      this.$vux.loading.show({
+        text: '请稍候'
+      });
+      this.getFields().then(function(){
+        that.$vux.loading.hide();
+      })
     }
   }
 </script>
