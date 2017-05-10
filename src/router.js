@@ -7,6 +7,7 @@ import index from './router/index/router'
 import login from './features/login/router'
 import fields from './features/fields/router'
 import sensors from './features/sensors/router'
+import activities from './features/activities/router'
 
 Vue.use(Router)
 let router = new Router({
@@ -15,7 +16,8 @@ let router = new Router({
       ...index,
       login,
       fields,
-      sensors
+      sensors,
+      activities
   ]
 })
 

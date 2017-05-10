@@ -26,10 +26,6 @@
         <p>水质</p>
         <Flexbox wrap="wrap" :gutter="0" justify="center">
           <FlexboxItem :span="1/3" v-for='(water, i) in monitor.water' :key="water.peng_type">
-            <!--<x-circle :percent="water.value | convert" :stroke-width="5" stroke-color="#04BE02">
-              <span>{{water.title}}</span><br>
-              <span>{{water.value}}</span>
-            </x-circle>-->
             <Gauge :label="water.title"
                    :value="water.value | convert"
                    :min="water.min_value | convert"
@@ -55,7 +51,7 @@
         </Flexbox>
       </div>
       <group>
-        <cell title="农事活动" is-link></cell>
+        <cell title="农事活动" is-link :link="{path:'/activities'}"></cell>
       </group>
       <div class="activity" v-for="(activity,i) in fieldActivities" :key="i">
         <Flexbox justify="center">
