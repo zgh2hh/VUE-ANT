@@ -8,6 +8,9 @@ export default {
     },{
       path: 'history/:peng_no/:type',
       component: r => require.ensure([], () => r(require('./pages/history')), '/sensors')
+    },{
+      path: 'chart',
+      component: r => require.ensure([], () => r(require('./pages/chart')), '/sensors')
     }
   ]
 }

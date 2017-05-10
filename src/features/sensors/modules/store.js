@@ -7,7 +7,10 @@ const state = {
   pengList: [],
   water: [],
   weather: [],
-  history: []
+  history: {
+    x: [],
+    y: []
+  }
 };
 
 const mutations = {
