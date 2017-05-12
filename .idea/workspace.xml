@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4a4a173-55f8-46c2-a5d8-1f3e7adbe52c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/features/activities/pages/index.vue" afterPath="$PROJECT_DIR$/src/features/activities/pages/index.vue" />
     </list>
     <ignored path="VUE_ANT.iws" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="index.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/features/activities/pages/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1687">
-              <caret line="109" column="31" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
+            <state relative-caret-position="57">
+              <caret line="62" column="9" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="9" />
               <folding>
                 <element signature="e#1000#1072#0" expanded="true" />
               </folding>
@@ -453,12 +452,12 @@
       <workItem from="1494290241695" duration="19948000" />
       <workItem from="1494377823059" duration="27046000" />
       <workItem from="1494466111799" duration="2187000" />
-      <workItem from="1494550429024" duration="5418000" />
+      <workItem from="1494550429024" duration="6335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="397818000" />
+    <option name="totallyTimeSpent" value="398735000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -846,8 +845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/features/activities/pages/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1687">
-          <caret line="109" column="31" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
+        <state relative-caret-position="57">
+          <caret line="62" column="9" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="9" />
           <folding>
             <element signature="e#1000#1072#0" expanded="true" />
           </folding>

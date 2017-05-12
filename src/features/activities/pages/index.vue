@@ -97,6 +97,7 @@
       next(vm => {
         vm.page = 1;
         vm.limit = 10;
+        vm.count = 1;
           // 通过 `vm` 访问组件实例
         vm.initData(vm.page, vm.limit, true)
       })
