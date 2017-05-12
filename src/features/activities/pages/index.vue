@@ -29,6 +29,7 @@
 <script>
   import { Timeline, TimelineItem, XHeader, Divider, Scroller } from 'vux'
   import { mapActions, mapGetters } from 'vuex'
+  import * as types from '../modules/mutationTypes'
 
   export default {
     components: {
@@ -50,7 +51,7 @@
     },
     methods: {
       ...mapActions(['getAllActivities']),
-      initData: async function(page, limit){
+      initData: async function(page, limit, toTop){
         this.$vux.loading.show({
           text: '请稍候'
         });
@@ -67,7 +68,13 @@
           this.$vux.loading.hide();
           // 加载完成
           this.$refs.demo2.donePullup();
-          this.$refs.demo2.reset();
+          if(!!toTop){
+            this.$refs.demo2.reset({
+              top: 0
+            });
+          }else{
+            this.$refs.demo2.reset();
+          }
           if(this.allActivities.length < this.limit){
             // 数据已获取完，禁用
             this.$refs.demo2.disablePullup();
@@ -75,17 +82,6 @@
         }
       },
       load2 () {
-        /*setTimeout(() => {
-          this.n2 += 10
-          setTimeout(() => {
-              this.$refs.demo2.donePullup()
-          }, 100)
-          if (this.n2 === 30) { // unload plugin
-              setTimeout(() => {
-                this.$refs.demo2.disablePullup()
-            }, 100)
-            }
-          }, 2000)*/
         this.limit = this.step * this.count;
         this.initData(this.page, this.limit);
       }
@@ -94,7 +90,25 @@
       ...mapGetters(['allActivities'])
     },
     created: function () {
-      this.initData(this.page, this.limit);
+
+    },
+    beforeRouteEnter(to, from, next){
+      let that = this;
+      next(vm => {
+        vm.page = 1;
+        vm.limit = 10;
+          // 通过 `vm` 访问组件实例
+        vm.initData(vm.page, vm.limit, true)
+      })
+    },
+    beforeRouteLeave: function(to, from, next) {
+      this.$store.commit(types.GET_ALL_ACTIVITIES, {
+        allActivities: []
+      });
+      next();
+    },
+    beforeDestroy: function() {
+      console.log('beforeDestroy')
     }
   }
 </script>
