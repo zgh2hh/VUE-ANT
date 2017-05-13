@@ -1,13 +1,22 @@
 <template>
   <div id="map" >
-    <v-map :zoom="zoom" :center="center">
+    <v-map :zoom="zoom" :center="center" v-on:l-zoomend="_zoomEnd">
       <v-tilelayer :url="url" :attribution="attribution"></v-tilelayer>
+      <v-polygon v-for="(field, index) in homeFieldList"
+                 :key="field.field_id"
+                 :lat-lngs="field.geometry | toArray"
+                 :color="color"
+                 :fillColor="color"
+                 :weight="weight"
+                 :fillOpacity="opacity">
+      </v-polygon>
       <v-marker :lat-lng="marker"></v-marker>
     </v-map>
   </div>
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
   // 修复marker图标路径错误
   import L from 'leaflet';
 
@@ -28,15 +37,54 @@
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer' :Vue2Leaflet.TileLayer,
-      'v-marker': Vue2Leaflet.Marker
+      'v-marker': Vue2Leaflet.Marker,
+      'v-polygon': Vue2Leaflet.Polygon
     },
     data () {
       return {
         zoom:13,
-        center: L.latLng(47.413220, -1.219482),
+        center: L.latLng(31.015337, 118.326863),
         url:'http://mt3.google.cn/vt/lyrs=y&hl=zh-CN&gl=cn&x={x}&y={y}&z={z}',
         attribution:'&copy;<a href="#">安徽阡陌网络科技有限公司</a>',
-        marker: L.latLng(47.413220, -1.219482),
+        marker: L.latLng(31.152639, 118.328569),
+        color: '#A28E8A',
+        weight: 1,
+        opacity: 0.4,
+      }
+    },
+    computed: {
+      ...mapGetters(['homeFieldList','Params'])
+    },
+    methods: {
+      ...mapActions(['getHomeFieldList']),
+      _zoomEnd(evt){
+        console.log(evt, evt.target._zoom);
+        if(evt.target._zoom < 17){
+          // 移除作物图层
+          //TODO
+          console.log("移除图层");
+        } else {
+          // 绘制作物图层
+          console.log("绘制图层");
+          this.drawCrops(this.homeFieldList);
+        }
+      },
+      drawCrops(fields) {
+        fields.forEach(field => {
+          const bounds = L.latLngBounds(field.geometry);
+          const center = bounds.getCenter();
+        });
+      },
+    },
+    created() {
+      this.getHomeFieldList();
+    },
+    filters: {
+      toArray: function (str) {
+        if(!str){
+          return [];
+        }
+        return JSON.parse(str);
       }
     }
   }
