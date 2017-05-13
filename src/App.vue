@@ -17,4 +17,11 @@
   @import '~vux/src/styles/1px.less';
   @import "./config/common.less";
   @import "theme.less";
+  @import "~leaflet/dist/leaflet.css";
+  .leaflet-fake-icon-image-2x {
+    background-image: url(../node_modules/leaflet/dist/images/marker-icon-2x.png);
+  }
+  .leaflet-fake-icon-shadow {
+    background-image: url(../node_modules/leaflet/dist/images/marker-shadow.png);
+  }
 </style>

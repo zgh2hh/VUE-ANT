@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import store from './store'
 import index from './router/index/router'
 //路由开始
+import map from './features/map/router'
 import login from './features/login/router'
 import fields from './features/fields/router'
 import sensors from './features/sensors/router'
@@ -14,6 +15,7 @@ let router = new Router({
   mode: 'hash',
   routes: [
       ...index,
+      map,
       login,
       fields,
       sensors,

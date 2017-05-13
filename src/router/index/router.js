@@ -5,12 +5,12 @@ export default [
   {
     path: '/',
     component:R_INDEX,
-    children: [
-      {
-        path: 'index/',
-        redirect:'/'
-      }
-    ]
+    // children: [
+    //   {
+    //     path: 'index/',
+    //     redirect:'/'
+    //   }
+    // ]
   },
   {
     //将OPENID注入session

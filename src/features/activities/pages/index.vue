@@ -69,11 +69,15 @@
           // 加载完成
           this.$refs.demo2.donePullup();
           if(!!toTop){
-            this.$refs.demo2.reset({
+            this.$nextTick(() => {
+              this.$refs.demo2.reset({
               top: 0
             });
+          })
           }else{
-            this.$refs.demo2.reset();
+            this.$nextTick(() => {
+                this.$refs.demo2.reset();
+            })
           }
           if(this.allActivities.length < this.limit){
             // 数据已获取完，禁用
@@ -88,9 +92,6 @@
     },
     computed: {
       ...mapGetters(['allActivities'])
-    },
-    created: function () {
-
     },
     beforeRouteEnter(to, from, next){
       let that = this;
@@ -110,6 +111,9 @@
     },
     beforeDestroy: function() {
       console.log('beforeDestroy')
+    },
+    activated () {
+      this.$refs.demo2.reset()
     }
   }
 </script>
