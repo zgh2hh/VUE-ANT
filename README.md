@@ -1,11 +1,16 @@
-# vue_ant
+# 爱农田-Vue2.0版
+阡陌[爱农田](http://www.qmant.com)V1.0已经上线有一段时间了，这是用VUE2.0模仿其安卓和IOS端实现的版本，以供初学Vue的同学参考。(如有错误，欢迎随时指正)
+***
+## 联系方式
+* QQ: 734623648
+* WX: 18130321306
 
-> A Vue.js project
+> 所涉及的技术有
 - vue2.0
 - vuex
 - vux
 - vue-router
-
+***
 ## Build Setup
 
 ``` bash

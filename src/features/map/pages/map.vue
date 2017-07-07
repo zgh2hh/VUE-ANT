@@ -10,7 +10,6 @@
                  :weight="weight"
                  :fillOpacity="opacity">
       </v-polygon>
-      <v-marker :lat-lng="marker"></v-marker>
     </v-map>
   </div>
 </template>
@@ -42,7 +41,7 @@
     },
     data () {
       return {
-        zoom:13,
+        zoom: 13,
         center: L.latLng(31.015337, 118.326863),
         url:'http://mt3.google.cn/vt/lyrs=y&hl=zh-CN&gl=cn&x={x}&y={y}&z={z}',
         attribution:'&copy;<a href="#">安徽阡陌网络科技有限公司</a>',
@@ -59,26 +58,33 @@
       ...mapActions(['getHomeFieldList']),
       _zoomEnd(evt){
         console.log(evt, evt.target._zoom);
-        if(evt.target._zoom < 17){
+        this.zoom = evt.target._zoom;
+        /*if(evt.target._zoom < 17){
           // 移除作物图层
           //TODO
           console.log("移除图层");
         } else {
           // 绘制作物图层
           console.log("绘制图层");
-          this.drawCrops(this.homeFieldList);
-        }
+//          this.drawCrops(this.homeFieldList);
+        }*/
       },
       drawCrops(fields) {
         fields.forEach(field => {
-          const bounds = L.latLngBounds(field.geometry);
-          const center = bounds.getCenter();
+          let bounds = L.latLngBounds(field.geometry);
+          let center = bounds.getCenter();
         });
       },
     },
     created() {
       this.getHomeFieldList();
     },
+//    beforeRouteEnter(to, from, next){
+//      let that = this;
+//      next(vm => {
+//        vm.getHomeFieldList();
+//       })
+//    },
     filters: {
       toArray: function (str) {
         if(!str){
