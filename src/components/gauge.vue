@@ -41,7 +41,7 @@
   import {describeArc, polarToCartesian} from '../features/common/utils'
 
   export default {
-    data() {
+    data () {
       return {
         cx: 50,
         cy: 50,
@@ -109,37 +109,37 @@
           }
         });
         // 绘制小于正常值范围
-        let lessEndAngleNum = this.alertMin / (this.max - this.min);
-        let lessEndAngle = lessEndAngleNum * 360;
-        let less = describeArc(this.cx, this.cy, this.radius, 1, 0, lessEndAngle);
-        this.$set(this.offset, 'less', less);
+        let lessEndAngleNum = this.alertMin / (this.max - this.min)
+        let lessEndAngle = lessEndAngleNum * 360
+        let less = describeArc(this.cx, this.cy, this.radius, 1, 0, lessEndAngle)
+        this.$set(this.offset, 'less', less)
 
         // 绘制正常值范围
-        let normalAngleNum = this.alertMax / (this.max - this.min);
-        let normalAngle = normalAngleNum * 360;
-        let normal = describeArc(this.cx, this.cy, this.radius, 1, lessEndAngle, normalAngle);
-        this.$set(this.offset, 'normal', normal);
+        let normalAngleNum = this.alertMax / (this.max - this.min)
+        let normalAngle = normalAngleNum * 360
+        let normal = describeArc(this.cx, this.cy, this.radius, 1, lessEndAngle, normalAngle)
+        this.$set(this.offset, 'normal', normal)
 
         // 绘制大于正常值范围
-        let moreEndAngleNum = this.max / (this.max - this.min);
-        let moreEndAngle = moreEndAngleNum * 360;
-        let more = describeArc(this.cx, this.cy, this.radius, 1, normalAngle, moreEndAngle);
-        this.$set(this.offset, 'more', more);
+        let moreEndAngleNum = this.max / (this.max - this.min)
+        let moreEndAngle = moreEndAngleNum * 360
+        let more = describeArc(this.cx, this.cy, this.radius, 1, normalAngle, moreEndAngle)
+        this.$set(this.offset, 'more', more)
       }
     },
     computed: {
       circumference: function () {
-        return 2 * Math.PI * this.radius;
+        return 2 * Math.PI * this.radius
       },
       styleObject: function () {
         return {
           "stroke-dasharray": this.circumference,
-          "stroke-dashoffset": this.circumference - ((this.value / (this.max - this.min)) * this.circumference),// 不是除以100
+          "stroke-dashoffset": this.circumference - ((this.value / (this.max - this.min)) * this.circumference)// 不是除以100
         }
       }
     },
     created: function () {
-      this.computeOffsets();
+      this.computeOffsets()
     }
   }
 </script>

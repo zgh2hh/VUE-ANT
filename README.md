@@ -10,6 +10,7 @@
 - vuex
 - vux
 - vue-router
+- axois
 ***
 ## Build Setup
 

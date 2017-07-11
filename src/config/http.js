@@ -5,7 +5,7 @@ import store from '@/store'
 
 axios.defaults.timeout = 60000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL =  (process.env.NODE_ENV == 'development' ? 'http://www.qmant.com/' : 'http://www.qmant.com/')
+axios.defaults.baseURL =  (process.env.NODE_ENV == 'development' ? 'http://wh.qmant.com/' : 'http://wh.qmant.com/')
 axios.defaults.withCredentials = true;
 
 //POST传参序列化
