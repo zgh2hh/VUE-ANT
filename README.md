@@ -7,6 +7,7 @@
 
 ## demo示例
 ![vue版爱农田](http://osprt4338.bkt.clouddn.com/view.gif)
+![仪表盘](http://osprt4338.bkt.clouddn.com/%E9%80%89%E5%8C%BA_051.png)
 
 ## 联系方式
 * EMAIL: zgh2hh@163.com
