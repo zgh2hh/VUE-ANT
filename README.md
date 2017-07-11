@@ -6,7 +6,7 @@
 ***
 
 ## demo示例
-![vue版爱农田](http://osprt4338.bkt.clouddn.com/view.gif)
+![vue版爱农田](view.gif)
 
 ## 联系方式
 * EMAIL: zgh2hh@163.com
