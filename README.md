@@ -7,6 +7,7 @@
 
 ## demo示例
 ![vue版爱农田](http://osprt4338.bkt.clouddn.com/view.gif)
+<iframe height=500 width=500 src="http://osprt4338.bkt.clouddn.com/view.gif">
 
 ## 联系方式
 * EMAIL: zgh2hh@163.com
